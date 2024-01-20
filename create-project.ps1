@@ -22,7 +22,9 @@ New-Item -ItemType Directory -Path $folderName -Force | Out-Null
 Write-Host "Folder created successfully: $folderName"
 
 cd $folderName
-npx create-react-app $normalizedDescription
+# npx create-react-app $normalizedDescription
+npm create vite@latest $normalizedDescription -- --template react
 
 cd $normalizedDescription
-npm start
+npm install
+npm run dev
