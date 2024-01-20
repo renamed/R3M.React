@@ -1,5 +1,5 @@
 $description = Read-Host "Enter the commit description"
-
+$commitMessage = "Class $description"
 git add .
 git commit -m $description
-git push --set-upstream origin $description
+git push
