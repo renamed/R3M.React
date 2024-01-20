@@ -11,6 +11,10 @@ $formattedClassNumber = "{0:D3}" -f [int]$classNumber
 $normalizedDescription = Normalize-String $description
 
 $folderName = "class-$formattedClassNumber-$normalizedDescription"
-New-Item -ItemType Directory -Path $folderName -Force
+New-Item -ItemType Directory -Path $folderName -Force | Out-Null
 
 Write-Host "Folder created successfully: $folderName"
+
+cd $folderName
+npx create-react-app $normalizedDescription
+cd 
