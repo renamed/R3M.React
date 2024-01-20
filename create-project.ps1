@@ -15,6 +15,7 @@ $normalizedDescription = Normalize-String $description
 $folderName = "$formattedClassNumber-$normalizedDescription"
 
 git branch $folderName
+git push --set-upstream origin $folderName
 
 New-Item -ItemType Directory -Path $folderName -Force | Out-Null
 
