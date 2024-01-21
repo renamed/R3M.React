@@ -33,6 +33,8 @@ do {
     switch ($templateOption) {
         "1" {  
             npx create-react-app $projectName
+            Set-Location $projectName
+            npm run start
         }
         "2" {
             npm create vite@latest $projectName -- --template react 
