@@ -1,6 +1,6 @@
 $commitMessage = Read-Host "Enter the commit description"
 
-$branchName = Get-Branch-Name
+$branchName = git rev-parse --abbrev-ref HEAD
 
 git add .
 git commit -m $commitMessage
