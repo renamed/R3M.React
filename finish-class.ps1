@@ -1,3 +1,5 @@
+. .\helpers.ps1
+
 $commitMessage = Read-Host "Enter the commit description"
 
 $branchName = git rev-parse --abbrev-ref HEAD
