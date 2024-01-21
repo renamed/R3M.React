@@ -1,5 +1,4 @@
-$description = Read-Host "Enter the commit description"
-$commitMessage = "Class $description"
+$commitMessage = Read-Host "Enter the commit description"
 
 $branchName = Get-Branch-Name
 
@@ -11,4 +10,3 @@ if ($branchName -ne "main") {
     git checkout main
     git pull --rebase origin $branchName
 }
-
