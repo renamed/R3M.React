@@ -11,4 +11,5 @@ git push
 if ($branchName -ne "main") {
     git checkout main
     git pull --rebase origin $branchName
+    git push
 }
