@@ -1,10 +1,10 @@
 $description = Read-Host "Enter the commit description"
 $commitMessage = "Class $description"
 
-$branchName = git rev-parse --abbrev-ref HEAD
+$branchName = Get-Branch-Name
 
 git add .
-git commit -m $description
+git commit -m $commitMessage
 git push
 
 if ($branchName -ne "main") {

@@ -1,29 +1,23 @@
-function Normalize-String($str) {
-    $normalizedString = $str -replace '[^\w\s]', '' -replace '\s', '-'
-    return $normalizedString.ToLower()
+. .\helpers.ps1
+
+$directories =  Get-ChildItem -Directory | Where-Object { $_.Name -match '^\d{3}' } | Sort-Object Name
+
+$newNumber = 1
+if ($directories.Count -ne 0) {    
+    $lastDir = $directories[-1]    
+    $lastDir.Name -match '^\d+' | Out-Null
+    $lastNumber = [int]$Matches[0]
+    $newNumber = [int]$lastNumber + 1
 }
 
-git checkout main
+Write-Host $newNumber
 
-$classNumber = Read-Host "Enter the class number"
-$description = Read-Host "Enter the class description"
+$description = Read-Host "Enter the project description"
+$normalizedDescription = Format-String $description
 
-$formattedClassNumber = "{0:D3}" -f [int]$classNumber
+$projectName = "{0:D3}-{1}" -f $newNumber, $normalizedDescription
 
-$normalizedDescription = Normalize-String $description
-
-$folderName = "$formattedClassNumber-$normalizedDescription"
-
-git checkout -b $folderName
-git push --set-upstream origin $folderName
-
-New-Item -ItemType Directory -Path $folderName -Force | Out-Null
-
-Write-Host "Folder created successfully: $folderName"
-
-cd $folderName
-npm create vite@latest $normalizedDescription -- --template react
-
-cd $normalizedDescription
+npm create vite@latest $projectName -- --template react
+Set-Location $projectName
 npm install
 npm run dev
